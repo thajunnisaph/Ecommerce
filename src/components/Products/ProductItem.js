@@ -4,8 +4,8 @@ import { Button } from "react-bootstrap";
 const ProductItem = (props) => {
   return (
     <li>
-      <div className="d-flex flex-column">
-        <h3>{props.title} </h3>
+      <div className="d-flex flex-column flex-wrap">
+        <h3 className='text-center'>{props.title} </h3>
         <div>
           <img src={props.img} alt="product"></img>
         </div>

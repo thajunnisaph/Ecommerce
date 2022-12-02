@@ -1,11 +1,20 @@
-import React,{Fragment} from 'react';
+import React,{Fragment, useState} from 'react';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import Product from './components/Products/Product';
+import Cart from './components/Cart/Cart';
 function App() {
+  const [ShowCart,SetShowCart] = useState(false);
+  const CartShowHandler = () =>{
+    SetShowCart(true);
+  }
+  const CartHideHandler = () =>{
+    SetShowCart(false);
+  }
   return (
     <Fragment>
-     <Header></Header>
+     <Header onShowCart={CartShowHandler}></Header>
+     {ShowCart && <Cart onCloseCart={CartHideHandler}></Cart>}
      <main>
       <Product></Product>
      </main>

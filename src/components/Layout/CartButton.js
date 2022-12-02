@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button,Badge } from 'react-bootstrap';
-const CartButton = () =>{
+const CartButton = (props) =>{
 return (
     <>
-    <Button variant="primary">Cart
+    <Button variant="primary" onClick={props.onclick}>Cart
     <Badge bg="secondary">0</Badge>
     </Button>
     </>

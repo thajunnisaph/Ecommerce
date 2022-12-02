@@ -1,11 +1,11 @@
 import React from "react";
 
 import ProductItem from "./ProductItem";
-import {Button} from 'react-bootstrap';
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 const productsArr = [
   {
-    id: 'p1',
+    id: "p1",
     title: "Colors",
 
     price: 100,
@@ -14,7 +14,7 @@ const productsArr = [
   },
 
   {
-    id:'p2',
+    id: "p2",
     title: "Black and white Colors",
 
     price: 50,
@@ -22,7 +22,8 @@ const productsArr = [
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
   },
 
-  { id:'p3',
+  {
+    id: "p3",
     title: "Yellow and Black Colors",
 
     price: 70,
@@ -31,7 +32,7 @@ const productsArr = [
   },
 
   {
-    id:'p4',
+    id: "p4",
     title: "Blue Color",
 
     price: 100,
@@ -40,24 +41,34 @@ const productsArr = [
   },
 ];
 
-const Product = () => {
+const Product = (props) => {
   return (
-    <section>
+    <>
       <ul>
-      <div className="d-flex justify-content-between">
-      {productsArr.map((product)=>{
-        return(
-        <ProductItem id={product.id} key={product.id} title={product.title} price={product.price} img={product.imageUrl}></ProductItem>
-        );
-      })}
-      </div>  
+        <Container >
+          <Row>
+            <Col xs={3} >
+              {productsArr.map((product) => {
+                return (
+                  <ProductItem
+                    id={product.id}
+                    key={product.id}
+                    title={product.title}
+                    price={product.price}
+                    img={product.imageUrl}
+                  ></ProductItem>
+                );
+              })}
+            </Col>
+          </Row>
+        </Container>
       </ul>
       <div className="text-center">
-        <Button variant="primary" size="lg"  >
-           See the Cart
+        <Button variant="primary" size="lg">
+          See the Cart
         </Button>
-        </div>
-    </section>
+      </div>
+    </>
   );
 };
 export default Product;

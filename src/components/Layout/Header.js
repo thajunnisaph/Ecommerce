@@ -3,7 +3,7 @@ import { Navbar,Container,Nav } from 'react-bootstrap';
 import CartButton from './CartButton';
 
 
-const Header = () =>{
+const Header = (props) =>{
 return(
 <Fragment>
   <Navbar bg='dark' expand='lg' variant='dark'>
@@ -13,7 +13,7 @@ return(
     <Nav.Link href='#'>STORE</Nav.Link>
     <Nav.Link href='#'>ABOUT </Nav.Link>
     </Nav>
-    <CartButton></CartButton>
+    <CartButton onclick={props.onShowCart}></CartButton>
    </Container>
   </Navbar>
   <Navbar expand='lg' style={{backgroundColor:'gray' }}>
