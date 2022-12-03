@@ -1,37 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Table, Card, Button, CloseButton } from "react-bootstrap";
-const cartElements = [
-  {
-    title: "Colors",
+import cartContext from "../../store/cart-context";
 
-    price: 100,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-
-    quantity: 2,
-  },
-
-  {
-    title: "Black and white Colors",
-
-    price: 50,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-
-    quantity: 3,
-  },
-
-  {
-    title: "Yellow and Black Colors",
-
-    price: 70,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-
-    quantity: 1,
-  },
-];
 const Cart = (props) => {
+    const cartElements= useContext(cartContext);
+    let totalamnt= 0;
+  cartElements.items.forEach((item) =>{
+    totalamnt= totalamnt+ item.quantity*item.price;
+  }) 
+  totalamnt = totalamnt.toFixed(2); 
   return (
     <Card style={{ width: "22rem", float: "right" }}>
       <Card.Body>
@@ -50,9 +27,9 @@ const Cart = (props) => {
               </tr>
             </thead>
             <tbody>
-              {cartElements.map((cartitem) => {
+              {cartElements.items.map((cartitem) => {
                 return (
-                  <tr key={cartitem.title}>
+                  <tr key={cartitem.id}>
                     <td>{cartitem.title}</td>
                     <td>{cartitem.price}</td>
                     <td>{cartitem.quantity}</td>
@@ -63,7 +40,7 @@ const Cart = (props) => {
             </tbody>
           </Table>
         </div>
-        <h5 className='text-end'>Total $0</h5>
+        <h5 className='text-end'>Total ${totalamnt}</h5>
         <Button variant="primary">Purchase</Button>
       </Card.Body>
     </Card>

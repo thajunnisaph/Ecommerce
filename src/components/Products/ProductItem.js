@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Button } from "react-bootstrap";
+import cartContext from "../../store/cart-context";
 const ProductItem = (props) => {
+  const cntx= useContext(cartContext);
+const addItemtoCart = (event) =>{
+event.preventDefault();
+cntx.addItem({...props,quantity: Number(1)});
+
+}
   return (
-    <li>
+    <li key={props.id}>
       <div className="d-flex flex-column flex-wrap">
         <h3 className='text-center'>{props.title} </h3>
         <div>
@@ -12,7 +19,7 @@ const ProductItem = (props) => {
         <div>
           {`$${props.price}`}
           <div className="text-end">
-            <Button variant="primary" size="sm">
+            <Button variant="primary" size="sm"onClick={addItemtoCart}>
               ADD TO CART
             </Button>
           </div>
