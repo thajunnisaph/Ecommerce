@@ -1,5 +1,6 @@
 import React,{Fragment} from 'react';
-import { Navbar,Container,Nav } from 'react-bootstrap';
+import { Navbar,Container,Nav} from 'react-bootstrap';
+import {NavLink} from 'react-router-dom';
 import CartButton from './CartButton';
 
 
@@ -8,10 +9,10 @@ return(
 <Fragment>
   <Navbar bg='dark' expand='lg' variant='dark'>
    <Container>
-    <Nav className='me-auto'>
-    <Nav.Link href='#'>HOME</Nav.Link>
-    <Nav.Link href='#'>STORE</Nav.Link>
-    <Nav.Link href='#'>ABOUT </Nav.Link>
+    <Nav className="active">
+    <NavLink to='#'>HOME</NavLink>
+    <NavLink to='/Store'>STORE</NavLink>
+    <NavLink to='/About'>ABOUT </NavLink>
     </Nav>
     <CartButton onclick={props.onShowCart}></CartButton>
    </Container>
