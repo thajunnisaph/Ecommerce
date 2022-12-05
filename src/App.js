@@ -5,6 +5,7 @@ import Product from './components/Products/Product';
 import Cart from './components/Cart/Cart';
 import CartProvider from './store/CartProvider';
 import AboutUs from './Pages/AboutUs';
+import Home from './Pages/Home';
 import {Route} from 'react-router-dom';
 function App() {
   const [ShowCart,SetShowCart] = useState(false);
@@ -16,6 +17,9 @@ function App() {
   }
   return (
     <CartProvider>
+      <Route path='/Home'>
+        <Home />
+      </Route>
       <Route path="/About">
         <AboutUs />
       </Route>

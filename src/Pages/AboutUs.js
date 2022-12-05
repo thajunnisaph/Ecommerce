@@ -7,9 +7,9 @@ const AboutUs = () => {
     <>
       <Header></Header>
       <Container fluid>
-        <Row>
-          <Col>
-            <h2 className="fst-italic">About</h2>
+        <Row >
+          <Col >
+            <h2 className="fst-italic text-center ">About</h2>
           </Col>
         </Row>
         <Row>
