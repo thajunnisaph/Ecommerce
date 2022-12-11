@@ -1,4 +1,4 @@
-import React,{Fragment} from 'react';
+import React from 'react';
 import { Navbar,Container,Nav} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import CartButton from './CartButton';
@@ -13,6 +13,7 @@ return(
     <NavLink to='/Home'>HOME</NavLink>
     <NavLink to='/Store'>STORE</NavLink>
     <NavLink to='/About'>ABOUT </NavLink>
+    <NavLink to='/Contact-Us'>CONTACT US</NavLink>
     </Nav>
     <CartButton onclick={props.onShowCart}></CartButton>
    </Container>
