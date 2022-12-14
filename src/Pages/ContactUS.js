@@ -1,6 +1,5 @@
 import React,{useRef} from "react";
-import Header from "../components/Layout/Header";
-import Footer from "../components/Layout/Footer";
+
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 
 const ContactUS = (props) => {
@@ -23,9 +22,9 @@ const ContactUS = (props) => {
   }
   return (
     <>
-      <Header></Header>
+      
       <br/>
-      <Container>
+      <Container >
       <Row >
           <Col lg={8}>
             <Card bg="info" >
@@ -56,7 +55,7 @@ const ContactUS = (props) => {
                       required
                     />
                   </Form.Group>
-                  <Button variant="primary" type="submit" >
+                  <Button variant="primary" type="submit"  >
                     Submit
                   </Button>
                 </Form>
@@ -64,8 +63,10 @@ const ContactUS = (props) => {
             </Card>
           </Col>
         </Row>
+        <br />
       </Container>
-      <Footer></Footer>
+    
+      
     </>
   );
 };

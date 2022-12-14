@@ -9,11 +9,13 @@ return(
 <Container fluid>
   <Navbar bg='dark' expand='lg' variant='dark'>
    <Container>
-    <Nav class="me-auto">
-    <NavLink to='/Home'>HOME</NavLink>
-    <NavLink to='/Store'>STORE</NavLink>
-    <NavLink to='/About'>ABOUT </NavLink>
-    <NavLink to='/Contact-Us'>CONTACT US</NavLink>
+    <Nav>
+    <ul>
+    <li><NavLink  to='/Home'>HOME</NavLink></li>
+    <li><NavLink to='/Store'>STORE</NavLink></li>
+    <li><NavLink to='/About'>ABOUT </NavLink></li>
+    <li><NavLink to='/Contact-Us'>CONTACT US</NavLink></li>
+    </ul>
     </Nav>
     <CartButton onclick={props.onShowCart}></CartButton>
    </Container>

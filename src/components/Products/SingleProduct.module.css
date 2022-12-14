@@ -1,0 +1,65 @@
+.SingleProduct {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .ImagesContainer {
+    width: 50vw;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .thubmnailContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .thumbnailOne {
+    margin: 10px;
+    width: 8vw;
+  
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+  }
+  .thumbnailOne img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .bigImgContainer {
+    height: 80vh;
+    width: 40vw;
+  
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .bigImgContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .bigImgContainer img:hover {
+    transform: scale(1.3);
+  }
+  
+  .detailContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .price {
+    font-size: 30px;
+    margin-right: 10px;
+  }
+  .realprice {
+    font-size: 20px;
+  }
+  .reviewContainer {
+    display: flex;
+    flex-direction: column;
+  }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container,Row,Col,Table,Button,Navbar} from 'react-bootstrap';
-import Header from '../components/Layout/Header';
-import Footer from '../components/Layout/Footer';
+
+
 const tourArr = [
     {
       id: "t1",
@@ -58,7 +58,7 @@ const tourArr = [
 const Home = () =>{
 return(
 <>
-<Header/>
+
 <Container fluid>
     <Row>
         <Col>
@@ -98,7 +98,7 @@ return(
     </Row>
 
 </Container>
-<Footer/>
+
 </>
 );
 }

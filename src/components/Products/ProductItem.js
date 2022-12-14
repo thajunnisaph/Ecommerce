@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-
+import classes from './ProductItem.module.css';
 import { Button } from "react-bootstrap";
 import cartContext from "../../store/cart-context";
+import {Link} from 'react-router-dom';
 const ProductItem = (props) => {
   const cntx= useContext(cartContext);
 const addItemtoCart = (event) =>{
@@ -11,12 +12,13 @@ cntx.addItem({...props,quantity: Number(1)});
 }
   return (
     <li key={props.id}>
-      <div className="d-flex flex-column flex-wrap">
-        <h3 className='text-center'>{props.title} </h3>
-        <div>
+      <Link to={`/Store/${props.id}`}>
+      <div className={classes.product}>
+        <div className={classes.title}> {props.title} </div>
+        <div className={classes.image}>
           <img src={props.img} alt="product"></img>
         </div>
-        <div>
+        <div className={classes.price}>
           {`$${props.price}`}
           <div className="text-end">
             <Button variant="primary" size="sm"onClick={addItemtoCart}>
@@ -25,6 +27,7 @@ cntx.addItem({...props,quantity: Number(1)});
           </div>
         </div>
       </div>
+      </Link>
     </li>
   );
 };

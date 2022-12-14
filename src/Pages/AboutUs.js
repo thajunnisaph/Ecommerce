@@ -1,11 +1,9 @@
 import { Container, Row, Col,Card } from "react-bootstrap";
-import Header from "../components/Layout/Header";
-import Footer from "../components/Layout/Footer";
 import BandMembers from "../assets/BandMembers.png";
 const AboutUs = () => {
   return (
     <>
-      <Header></Header>
+      
       <Container fluid>
         <Row >
           <Col >
@@ -48,7 +46,7 @@ const AboutUs = () => {
           </Col>
         </Row>
       </Container>
-      <Footer></Footer>
+     
     </>
   );
 };
