@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import Product from "./components/Products/Product";
 import Cart from "./components/Cart/Cart";
-import CartProvider from "./store/CartProvider";
 import AboutUs from "./Pages/AboutUs";
 import Home from "./Pages/Home";
+import Login from './Pages/Login'
 import { Route, Switch,Redirect } from "react-router-dom";
 import ContactUS from "./Pages/ContactUS";
 import SingleProduct from "./components/Products/SingleProduct";
+import CartProvider from './store/CartProvider';
+import AuthContext from "./store/AuthContext";
 function App() {
   const [ShowCart, SetShowCart] = useState(false);
-
+      const athctx=useContext(AuthContext);
   const contactUsHandler = async (user) => {
     console.log(user);
     const response = await fetch(
@@ -34,33 +36,41 @@ function App() {
     SetShowCart(false);
   };
   return (
-    <CartProvider>
-      <Header onShowCart={CartShowHandler}></Header>
+   <CartProvider>
+    {athctx.isLoggedIn && <Header onShowCart={CartShowHandler}></Header>}
       {ShowCart && <Cart onCloseCart={CartHideHandler}></Cart>}
       <main>
         <Switch>
-          <Route path ='/' exact>
-            <Redirect to='/Home'/>
-          </Route>
-        <Route path="/Home">
-          <Home />
-        </Route>
-        <Route path="/About">
+      {!athctx.isLoggedIn && (<Route path='/Login' exact>
+            <Login />
+          </Route>)}
+        { !athctx.isLoggedIn &&  <Route path="/" exact>
+          <Redirect to='Login'/>
+        </Route>}
+
+{athctx.isLoggedIn && (<Route path ='/' exact>
+            <Home/>
+          </Route>)}
+       
+    {athctx.isLoggedIn &&(<Route path="/About">
           <AboutUs />
-        </Route>
+        </Route>)}
         <Route path="/Contact-Us">
           <ContactUS onContact={contactUsHandler} />
         </Route>
-        <Route path="/Store" exact>
+       {athctx.isLoggedIn &&( <Route path="/Store" exact>
           <Product></Product>
-        </Route>
+        </Route>)}
         <Route path="/Store/:productID">
           <SingleProduct />
         </Route>
+        <Route path='*'>
+          <Redirect to='/' />
+        </Route>
         </Switch>
       </main>
-      <Footer />
-    </CartProvider>
+      {athctx.isLoggedIn && <Footer />}
+      </CartProvider>
   );
 }
 

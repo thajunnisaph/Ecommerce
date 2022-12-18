@@ -1,30 +1,40 @@
-import React from 'react';
-import { Navbar,Container,Nav} from 'react-bootstrap';
-import {NavLink} from 'react-router-dom';
-import CartButton from './CartButton';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import CartButton from "./CartButton";
+import classes from './Header.module.css';
 
+const Header = (props) => {
+  return (
+    <>
+      <header className={classes.header}>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/">HOME</NavLink>
+            </li>
+            <li>
+              <NavLink to="/Store">STORE</NavLink>
+            </li>
+            <li>
+              <NavLink to="/About">ABOUT </NavLink>
+            </li>
+            <li>
+              <NavLink to="/Login">LOGIN </NavLink>
+            </li>
+            <li>
+              <NavLink to="/Contact-Us">CONTACT US</NavLink>
+            </li>
 
-const Header = (props) =>{
-return(
-<Container fluid>
-  <Navbar bg='dark' expand='lg' variant='dark'>
-   <Container>
-    <Nav>
-    <ul>
-    <li><NavLink  to='/Home'>HOME</NavLink></li>
-    <li><NavLink to='/Store'>STORE</NavLink></li>
-    <li><NavLink to='/About'>ABOUT </NavLink></li>
-    <li><NavLink to='/Contact-Us'>CONTACT US</NavLink></li>
-    </ul>
-    </Nav>
-    <CartButton onclick={props.onShowCart}></CartButton>
-   </Container>
-  </Navbar>
-  
-  <Navbar expand='lg' style={{backgroundColor:'gray' }}>
-    <h1 >The Generics</h1>
-  </Navbar>
-</Container>
-);
-}
+            <li>
+              <CartButton onclick={props.onShowCart}></CartButton>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div className={classes.section}>
+        <h1>The Generics</h1>
+      </div>
+    </>
+  );
+};
 export default Header;
