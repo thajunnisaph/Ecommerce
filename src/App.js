@@ -1,19 +1,21 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import Product from "./components/Products/Product";
 import Cart from "./components/Cart/Cart";
 import AboutUs from "./Pages/AboutUs";
 import Home from "./Pages/Home";
-import Login from './Pages/Login'
-import { Route, Switch,Redirect } from "react-router-dom";
+import Login from "./Pages/Login";
+import { Route, Switch, Redirect } from "react-router-dom";
 import ContactUS from "./Pages/ContactUS";
 import SingleProduct from "./components/Products/SingleProduct";
-import CartProvider from './store/CartProvider';
+import CartProvider from "./store/CartProvider";
 import AuthContext from "./store/AuthContext";
+import cartContext from "./store/cart-context";
 function App() {
   const [ShowCart, SetShowCart] = useState(false);
-      const athctx=useContext(AuthContext);
+  const athctx = useContext(AuthContext);
+  const ctctx = useContext(cartContext);
   const contactUsHandler = async (user) => {
     console.log(user);
     const response = await fetch(
@@ -35,42 +37,76 @@ function App() {
   const CartHideHandler = () => {
     SetShowCart(false);
   };
+  useEffect(() => {
+    fetch(
+      `https://crudcrud.com/api/352b4a84874f43d3b74618905afb9e0d/cart${athctx.email}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        data.forEach((item) => {
+          console.log(item);
+          ctctx.addItem(item);
+        });
+      })
+      .catch((err) => {
+        alert("something went wrong");
+      });
+  }, []);
   return (
-   <CartProvider>
-    {athctx.isLoggedIn && <Header onShowCart={CartShowHandler}></Header>}
+    <CartProvider>
+      {athctx.isLoggedIn && <Header onShowCart={CartShowHandler}></Header>}
       {ShowCart && <Cart onCloseCart={CartHideHandler}></Cart>}
       <main>
         <Switch>
-      {!athctx.isLoggedIn && (<Route path='/Login' exact>
-            <Login />
-          </Route>)}
-        { !athctx.isLoggedIn &&  <Route path="/" exact>
-          <Redirect to='Login'/>
-        </Route>}
+          {!athctx.isLoggedIn && (
+            <Route path="/Login" exact>
+              <Login />
+            </Route>
+          )}
+          {!athctx.isLoggedIn && (
+            <Route path="/" exact>
+              <Redirect to="Login" />
+            </Route>
+          )}
 
-{athctx.isLoggedIn && (<Route path ='/' exact>
-            <Home/>
-          </Route>)}
-       
-    {athctx.isLoggedIn &&(<Route path="/About">
-          <AboutUs />
-        </Route>)}
-        <Route path="/Contact-Us">
-          <ContactUS onContact={contactUsHandler} />
-        </Route>
-       {athctx.isLoggedIn &&( <Route path="/Store" exact>
-          <Product></Product>
-        </Route>)}
-        <Route path="/Store/:productID">
-          <SingleProduct />
-        </Route>
-        <Route path='*'>
-          <Redirect to='/' />
-        </Route>
+          {athctx.isLoggedIn && (
+            <Route path="/" exact>
+              <Home />
+            </Route>
+          )}
+
+          {athctx.isLoggedIn && (
+            <Route path="/About">
+              <AboutUs />
+            </Route>
+          )}
+          <Route path="/Contact-Us">
+            <ContactUS onContact={contactUsHandler} />
+          </Route>
+          {athctx.isLoggedIn && (
+            <Route path="/Store" exact>
+              <Product></Product>
+            </Route>
+          )}
+          <Route path="/Store/:productID">
+            <SingleProduct />
+          </Route>
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
         </Switch>
       </main>
       {athctx.isLoggedIn && <Footer />}
-      </CartProvider>
+    </CartProvider>
   );
 }
 

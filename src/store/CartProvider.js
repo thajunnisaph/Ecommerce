@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
 import cartContext from './cart-context';
+
 const CartProvider = (props) =>{
     const [Items,SetItems] = useState([]);
+   
     const AddItemToCartHandler = (item) =>{
         console.log(item)
      const multipleitem= Items.find((cartitem)=>cartitem.id===item.id);
@@ -15,6 +17,8 @@ const CartProvider = (props) =>{
      else{
       SetItems([...Items,item]);
      }
+     
+    
     }
     const removeItemFromCartHandler = () =>{
 

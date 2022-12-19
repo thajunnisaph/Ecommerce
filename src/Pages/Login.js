@@ -51,7 +51,8 @@ const Login = () => {
           });
         }
       }).then((data) =>{
-         authctx.login(data.idToken);
+         const email = data.email.replace(/\.|@/g, '');
+         authctx.login(data.idToken,email);
         history.replace('/Store');
       }).catch(err =>{
         alert(err.message);
