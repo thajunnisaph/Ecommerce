@@ -3,25 +3,13 @@ import classes from './ProductItem.module.css';
 import { Button } from "react-bootstrap";
 import cartContext from "../../store/cart-context";
 import {Link} from 'react-router-dom';
-import AuthContext from '../../store/AuthContext';
+
 const ProductItem = (props) => {
   const cntx= useContext(cartContext);
-  const authctx= useContext(AuthContext);
+
 const addItemtoCart = (event) =>{
 event.preventDefault();
 cntx.addItem({...props,quantity: Number(1)});
-let url=`https://crudcrud.com/api/352b4a84874f43d3b74618905afb9e0d/cart${authctx.email}`;
-fetch(url,{
-   method:'POST',
-   body:JSON.stringify({
-    ...props,
-    quantity:Number(1)
-   }),
-   headers:{
-       'Content-Type': 'application/json'
-   }
-})
-
 }
   return (
     <li key={props.id}>

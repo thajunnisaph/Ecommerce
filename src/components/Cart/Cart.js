@@ -9,6 +9,9 @@ const Cart = (props) => {
     totalamnt= totalamnt+ item.quantity*item.price;
   }) 
   totalamnt = totalamnt.toFixed(2); 
+  const removeHandler = (id) =>{
+   cartElements.removeItem(id);
+  }
   return (
     <Card style={{ width: "22rem", float: "right" }}>
       <Card.Body>
@@ -27,13 +30,13 @@ const Cart = (props) => {
               </tr>
             </thead>
             <tbody>
-              {cartElements.items.map((cartitem) => {
+              {cartElements.items.map((cartitem,index) => {
                 return (
-                  <tr key={cartitem.id}>
+                  <tr key={index}>
                     <td>{cartitem.title}</td>
                     <td>{cartitem.price}</td>
                     <td>{cartitem.quantity}</td>
-                    <td><CloseButton  /></td>
+                    <td><CloseButton onClick={()=>{removeHandler(cartitem._id)}}/></td>
                   </tr>
                 );
               })}

@@ -9,7 +9,6 @@ import Login from "./Pages/Login";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ContactUS from "./Pages/ContactUS";
 import SingleProduct from "./components/Products/SingleProduct";
-import CartProvider from "./store/CartProvider";
 import AuthContext from "./store/AuthContext";
 import cartContext from "./store/cart-context";
 function App() {
@@ -38,33 +37,12 @@ function App() {
     SetShowCart(false);
   };
   useEffect(() => {
-    fetch(
-      `https://crudcrud.com/api/352b4a84874f43d3b74618905afb9e0d/cart${athctx.email}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((data) => {
-        data.forEach((item) => {
-          console.log(item);
-          ctctx.addItem(item);
-        });
-      })
-      .catch((err) => {
-        alert("something went wrong");
-      });
-  }, []);
+   ctctx.showItem();
+  }, [athctx.token]);
   return (
-    <CartProvider>
+    <>
       {athctx.isLoggedIn && <Header onShowCart={CartShowHandler}></Header>}
-      {ShowCart && <Cart onCloseCart={CartHideHandler}></Cart>}
+      {ShowCart && athctx.isLoggedIn && <Cart onCloseCart={CartHideHandler}></Cart>}
       <main>
         <Switch>
           {!athctx.isLoggedIn && (
@@ -106,7 +84,7 @@ function App() {
         </Switch>
       </main>
       {athctx.isLoggedIn && <Footer />}
-    </CartProvider>
+    </>
   );
 }
 
